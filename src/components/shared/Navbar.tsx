@@ -1,9 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import { signOut } from "next-auth/react";
+import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,35 +11,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { LogOut } from "lucide-react";
+import { LogOut, Menu } from "lucide-react";
 import logo from "../../app/assets/logo.png";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { ModeToggle } from "../mode-toggle";
 
-type UserProps = {
-  user?: {
-    name?: string | null | undefined;
-    email?: string | null | undefined;
-    image?: string | null | undefined;
-    role?: "student" | "tutor";
-  };
-};
-
-const Navbar = ({ session }: { session: UserProps | null }) => {
+const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleLogOut = () => {
-    signOut();
-  };
-
   return (
     <nav className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md border-b border-border shadow-md z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+      <div className=" flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <div>
@@ -97,52 +82,42 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
         <div className="flex items-center space-x-4">
           <ModeToggle />
 
-          {session?.user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage
-                    src={session.user.image || "https://github.com/shadcn.png"}
-                  />
-                  <AvatarFallback>
-                    {session.user.name?.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href={`/${session.user.role}/dashboard`}>
-                    Dashboard
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="bg-red-500 cursor-pointer text-white"
-                  onClick={handleLogOut}
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log Out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Link
-              href="/login"
-              className="hidden sm:inline-block px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition duration-300"
-            >
-              Login
-            </Link>
-          )}
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar>
+                <AvatarImage src={"https://github.com/shadcn.png"} />
+                <AvatarFallback></AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>
+                {/* <Link to={"/"}>Dashboard</Link> */}
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="bg-red-500 cursor-pointer text-white">
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Log Out</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <Link
+            href="/login"
+            className="hidden sm:inline-block px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition duration-300"
+          >
+            Login
+          </Link>
 
           {/* Mobile Menu Toggle Button */}
           <button
-            onClick={toggleMobileMenu}
             className="md:hidden text-2xl text-primary focus:outline-none"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
           >
-            {isMobileMenuOpen ? "✕" : "☰"}
+            <Menu className="h-6 w-6" />
           </button>
         </div>
 
@@ -182,22 +157,17 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
                 </Link>
               </li>
               <li>
-                {session?.user ? (
-                  <Button
-                    onClick={handleLogOut}
-                    className="block px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition duration-300"
-                  >
-                    LogOut
-                  </Button>
-                ) : (
-                  <Link
-                    href="/login"
-                    className="block px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition duration-300"
-                    onClick={toggleMobileMenu}
-                  >
-                    Login
-                  </Link>
-                )}
+                <Button className="w-full px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition duration-300">
+                  LogOut
+                </Button>
+              </li>
+              <li>
+                <Link
+                  href="/login"
+                  className="block w-full text-center px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition duration-300"
+                >
+                  Login
+                </Link>
               </li>
             </ul>
           </div>
