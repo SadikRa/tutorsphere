@@ -2,9 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { ModeToggle } from "./mode-toggle";
 import { useState } from "react";
-import { Button } from "./ui/button";
 import { signOut } from "next-auth/react";
 import {
   DropdownMenu,
@@ -16,6 +14,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogOut } from "lucide-react";
+import logo from "../../app/assets/logo.png";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import { ModeToggle } from "../mode-toggle";
 
 type UserProps = {
   user?: {
@@ -43,8 +45,8 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <div>
-            <img
-              src="/tutorsphere-logo.png" // Replace with your logo
+            <Image
+              src={logo}
               alt="TutorSphere Logo"
               width={40}
               height={40}
@@ -67,7 +69,10 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             </Link>
           </li>
           <li>
-            <Link href="/browse-tutors" className="hover:text-[#2563EB] transition">
+            <Link
+              href="/browse-tutors"
+              className="hover:text-[#2563EB] transition"
+            >
               Browse Tutors
             </Link>
           </li>
@@ -96,7 +101,9 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
-                  <AvatarImage src={session.user.image || "https://github.com/shadcn.png"} />
+                  <AvatarImage
+                    src={session.user.image || "https://github.com/shadcn.png"}
+                  />
                   <AvatarFallback>
                     {session.user.name?.charAt(0).toUpperCase()}
                   </AvatarFallback>
@@ -107,7 +114,9 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href={`/${session.user.role}/dashboard`}>Dashboard</Link>
+                  <Link href={`/${session.user.role}/dashboard`}>
+                    Dashboard
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
@@ -163,18 +172,12 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/faq"
-                  className="hover:text-[#2563EB] transition"
-                >
+                <Link href="/faq" className="hover:text-[#2563EB] transition">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/blog"
-                  className="hover:text-[#2563EB] transition"
-                >
+                <Link href="/blog" className="hover:text-[#2563EB] transition">
                   Blog
                 </Link>
               </li>
