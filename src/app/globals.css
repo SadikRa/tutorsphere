@@ -17,26 +17,26 @@
     --card-foreground: #1f2937; /* Dark Gray */
     --popover: #ffffff; /* White */
     --popover-foreground: #1f2937; /* Dark Gray */
-    
+
     --primary: #2563EB; /* Electric Blue for call-to-action buttons and highlights */
     --primary-foreground: #ffffff; /* White */
-    
+
     --secondary: #F59E0B; /* Amber for accents and important UI elements */
     --secondary-foreground: #1f2937; /* Dark Gray */
-    
+
     --muted: #f3f4f6; /* Light Gray */
     --muted-foreground: #6b7280; /* Medium Gray */
-    
+
     --accent: #F59E0B; /* Amber for accents */
     --accent-foreground: #1f2937; /* Dark Gray */
-    
+
     --destructive: #EF4444; /* Red for alerts or failed actions */
     --destructive-foreground: #ffffff; /* White */
-    
+
     --border: #e5e7eb; /* Light Gray */
     --input: #e5e7eb; /* Light Gray */
     --ring: #2563eb; /* Electric Blue */
-    
+
     --radius: 0.625rem; /* Border radius */
     --sidebar: #ffffff; /* White */
     --sidebar-foreground: #1f2937; /* Dark Gray */
@@ -51,32 +51,32 @@
   .dark {
     --background: #1f2937; /* Dark Gray */
     --foreground: #ffffff; /* White */
-    
+
     --card: #1f2937; /* Dark Gray */
     --card-foreground: #ffffff; /* White */
-    
+
     --popover: #1f2937; /* Dark Gray */
     --popover-foreground: #ffffff; /* White */
-    
+
     --primary: #2563eb; /* Electric Blue */
     --primary-foreground: #ffffff; /* White */
-    
+
     --secondary: #f59e0b; /* Amber */
     --secondary-foreground: #1f2937; /* Dark Gray */
-    
+
     --muted: #374151; /* Darker Gray */
     --muted-foreground: #9ca3af; /* Medium Gray */
-    
+
     --accent: #f59e0b; /* Amber */
     --accent-foreground: #1f2937; /* Dark Gray */
-    
+
     --destructive: #dc2626; /* Red for errors */
     --destructive-foreground: #ffffff; /* White */
-    
+
     --border: #374151; /* Dark Gray */
     --input: #4b5563; /* Medium Gray */
     --ring: #2563eb; /* Electric Blue */
-    
+
     --sidebar: #1f2937; /* Dark Gray */
     --sidebar-foreground: #ffffff; /* White */
     --sidebar-primary: #2563eb; /* Electric Blue */
@@ -129,4 +129,26 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+:root {
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+.dark {
+  --sidebar: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
