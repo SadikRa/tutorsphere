@@ -9,6 +9,7 @@ import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
 import Image from "next/image";
 import { SiGithub, SiGoogle } from "react-icons/si";
+import { signIn } from "next-auth/react";
 
 export type FormValues = {
   email: string;
@@ -24,6 +25,20 @@ const LoginForm = () => {
 
   const onSubmit = async (data: FormValues) => {
     console.log("Login attempt", data);
+  };
+
+  const handleSocialLogin = (provider: string) => {
+    console.log(`Logging in with ${provider}`);
+
+    if (provider == "github") {
+      signIn("github", {
+        callbackUrl: "http://localhost:3000/",
+      });
+    } else if (provider == "google") {
+      signIn("google", {
+        callbackUrl: "http://localhost:3000/",
+      });
+    }
   };
 
   return (
@@ -127,6 +142,7 @@ const LoginForm = () => {
                 <div className="flex justify-center space-x-4">
                   {/* GitHub Login Button */}
                   <Button
+                    onClick={() => handleSocialLogin("github")}
                     variant="outline"
                     className="w-12 h-12 p-0 rounded-full"
                   >
@@ -135,6 +151,7 @@ const LoginForm = () => {
 
                   {/* Google Login Button */}
                   <Button
+                    onClick={() => handleSocialLogin("google")}
                     variant="outline"
                     className="w-12 h-12 p-0 rounded-full"
                   >
