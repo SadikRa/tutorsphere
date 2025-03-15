@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description: "Welcome to TutorSphere - Find and Connect with the Best Tutors",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
